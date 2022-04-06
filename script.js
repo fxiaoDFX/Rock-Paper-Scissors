@@ -33,28 +33,42 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game(){
+const buttons = document.querySelectorAll('button');
+function logText(e){
+    console.log(this.classList.value);
+}
+buttons.forEach(button => {
+    button.addEventListener('click', logText);
+});
+
+// Must change this function to use buttons 
+/* function game() {
     let i = 0;
     let valid = true;
     let playerSelection = "";
     let result = "";
-    let playerWins = 0; 
+    let playerWins = 0;
     let computerWins = 0;
 
-    while(i < 5){
+    const buttons = document.querySelectorAll('button');
+
+    buttons.forEach(button => button.addEventListener('click', game));
+
+    // Remove play to five limit, now end the game when a player scores 5 wins
+    while (i < 5) {
         playerSelection = prompt("Choose one: Rock, Paper, or Scissors.");
         result = playRound(playerSelection, computerPlay());
-        if(result === "Tie"){
+        if (result === "Tie") {
             console.log("It's a tie.");
             i++;
-        }else if(result === false){
+        } else if (result === false) {
             console.log("Invalid input, try again.");
-        }else{
+        } else {
             let resultCheck = result.slice(4, 5);
-            if(resultCheck === "w"){
+            if (resultCheck === "w") {
                 console.log(result);
                 playerWins++;
-            }else{
+            } else {
                 console.log(result);
                 computerWins++;
             }
@@ -62,14 +76,15 @@ function game(){
         }
         valid = true;
     }
-    if(playerWins > computerWins){
+    if (playerWins > computerWins) {
         console.log("Congrats, you win!");
-    }else if(playerWins === computerWins){
+    } else if (playerWins === computerWins) {
         console.log("No contest.");
-    }else{
+    } else {
         console.log("You have been defeated!");
     }
     console.log("You: " + playerWins + "\nComputer: " + computerWins);
 }
 
-game();
+game(); 
+*/
