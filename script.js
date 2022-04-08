@@ -52,5 +52,9 @@ buttons.forEach(button => button.addEventListener('click', () => {
     // Update score
 }));
 
-
+// TODO
+// Function game() updates scores and ends game when a player reaches 5 points
+function game(){
+    return 0;
+}
    
