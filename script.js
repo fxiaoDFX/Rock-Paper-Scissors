@@ -41,20 +41,33 @@ scores.forEach(score => score.insertAdjacentText('beforebegin', 0));
 // Get click even for rock, paper, scissors buttons
 const buttons = document.querySelectorAll('button');
 let playerSelection = "";
-
 const result = document.querySelector('.result');
+let resultText = ""; 
 
 buttons.forEach(button => button.addEventListener('click', () => {
     playerSelection = button.className;
-    let str = playRound(playerSelection, computerPlay());
+    resultText = playRound(playerSelection, computerPlay());
     // Display result of round
-    result.textContent = str;
-    // Update score
+    result.textContent = resultText;
+    // TODO: display updates scores
+    game();
 }));
 
 // TODO
 // Function game() updates scores and ends game when a player reaches 5 points
 function game(){
-    return 0;
+    if(resultText === "Tie"){
+        console.log("It's a tie.");
+    }else if(result === false){
+        console.log("Invalid input, try again.");
+    }else{
+        let resultCheck = resultText.slice(4, 5);
+        if(resultCheck === "w"){
+            console.log(resultText);
+
+        }else{
+            console.log(resultText);
+        }
+    }
 }
    
