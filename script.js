@@ -33,13 +33,11 @@ function playRound(playerSelection, computerSelection) {
 }
 
 // Get reference to score and then set scores to 0
-let playerScore = 0;
-let computerScore = 0;
 const scores = document.querySelectorAll('.score');
-scores.forEach(score => score.insertAdjacentText('beforebegin', 0));
+scores.forEach(score => score.textContent = 0);
 
 // Get click even for rock, paper, scissors buttons
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.options > button');
 let playerSelection = "";
 const result = document.querySelector('.result');
 let resultText = ""; 
@@ -55,6 +53,13 @@ buttons.forEach(button => button.addEventListener('click', () => {
 
 // TODO
 // Function game() updates scores and ends game when a player reaches 5 points
+// Currently code only displayer through console, need to change all console.logs to 
+// DOM methods later
+let playerScore = 0;
+let computerScore = 0;
+const divPlayer = document.querySelector('.player.score');
+const divComputer = document.querySelector('.computer.score');
+
 function game(){
     if(resultText === "Tie"){
         console.log("It's a tie.");
@@ -64,10 +69,47 @@ function game(){
         let resultCheck = resultText.slice(4, 5);
         if(resultCheck === "w"){
             console.log(resultText);
-
+            playerScore++;
+            divPlayer.textContent = playerScore;
         }else{
             console.log(resultText);
+            computerScore++;
+            divComputer.textContent = computerScore;
         }
     }
+    if(playerScore === 5){
+        console.log(`GG you won!.`);
+        reset();
+    }else if(computerScore === 5){
+        console.log(`Game over, you lost!.`);
+        reset();
+    }
 }
+
+// Function reset()
+/* Resets the game when clicked, scores are set to 0
+*/
+const pAgainBtn = document.createElement('button');
+const options = document.querySelector('.options');
+
+function reset(){
+    // Create element "Play Again" button
+    // Replaces div.options with button that says Play Again
+    // After click this button, this button is replaced with old options buttons
+    pAgainBtn.innerHTML = "Play Again";
+    options.hidden = true;
+    const divContainer = document.querySelector('.container');
+    divContainer.appendChild(pAgainBtn);
+
+    const newBtn = document.createElement('button');
+        newBtn.innerText  = "New Button";
+    // Reset scores back to 0
+    pAgainBtn.addEventListener('click', () =>{
+        playerScore = 0;
+        computerScore = 0;
+        scores.forEach(score => score.textContent = 0);
+        options.hidden = false;
+        pAgainBtn.remove();
+    })
    
+}
