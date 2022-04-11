@@ -47,11 +47,10 @@ buttons.forEach(button => button.addEventListener('click', () => {
     resultText = playRound(playerSelection, computerPlay());
     // Display result of round
     result.textContent = resultText;
-    // TODO: display updates scores
+    // display updates scores
     game();
 }));
 
-// TODO
 // Function game() updates scores and ends game when a player reaches 5 points
 // Currently code only displayer through console, need to change all console.logs to 
 // DOM methods later
